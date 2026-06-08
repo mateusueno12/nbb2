@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botão Animado com Efeito Hover</title>
+    <style>
+        /* ESTILOS GERAIS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* ESTILO DO BOTÃO PRINCIPAL */
+        button {
+            position: relative; /* Necessário para posicionamento absoluto dos pseudo-elementos */
+            background: transparent;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 15px 40px;
+            border: 2px solid white;
+            border-radius: 8px;
+            cursor: pointer;
+            overflow: hidden; /* Esconde o conteúdo fora do botão durante as animações */
+            transition: all 0.3s ease;
+            letter-spacing: 2px;
+            z-index: 1; /* Garante que o texto fique sobre as animações */
+        }
+
+        /* ESTILO DO SPAN INTERNO */
+        button span {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* PSEUDO-ELEMENTO BEFORE DO BOTÃO (LINHA SUPERIOR) */
+        button::before {
+            content: ""; /* Necessário para pseudo-elementos existirem */
+            position: absolute; /* Posicionamento absoluto relativo ao botão */
+            top: 0; /* Alinhado no topo */
+            left: -100%; /* Inicia fora da tela à esquerda (100% negativo) */
+            width: 100%; /* Largura igual ao botão */
+            height: 4px; /* Altura da linha (4 pixels) */
+            background-color: white; /* Cor branca */
+            transition: all 0.5s ease; /* Animação suave de 0.5 segundos */
+            z-index: 1;
+        }
+
+        /* EFEITO HOVER NO BEFORE (LINHA SUPERIOR ENTRA) */
+        button:hover::before {
+            left: 0; /* Move a linha para a posição inicial visível */
+        }
+
+        /* PSEUDO-ELEMENTO AFTER DO BOTÃO (LINHA INFERIOR) */
+        button::after {
+            content: ""; /* Necessário para existência do pseudo-elemento */
+            position: absolute; /* Posicionamento absoluto */
+            bottom: 0; /* Alinhado na parte inferior */
+            right: -100%; /* Inicia fora da tela à direita */
+            width: 100%; /* Largura total */
+            height: 4px; /* Altura da linha */
+            background-color: white; /* Cor branca */
+            transition: all 0.5s ease; /* Animação suave */
+            z-index: 1;
+        }
+
+        /* EFEITO HOVER NO AFTER DO BOTÃO (LINHA INFERIOR ENTRA) */
+        button:hover::after {
+            right: 0; /* Move a linha da direita para posição visível */
+        }
+
+        /* PSEUDO-ELEMENTO BEFORE DO SPAN (LINHA VERTICAL DIREITA) */
+        button span::before {
+            content: "";
+            position: absolute;
+            top: -100%; /* Inicia fora acima */
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background-color: white;
+            transition: all 0.5s ease;
+            z-index: 1;
+        }
+
+        /* EFEITO HOVER NO BEFORE DO SPAN (LINHA VERTICAL DIREITA ENTRA) */
+        button:hover span::before {
+            top: 0; /* Move do topo para posição visível */
+        }
+
+        /* PSEUDO-ELEMENTO AFTER DO SPAN (LINHA VERTICAL ESQUERDA) */
+        button span::after {
+            content: "";
+            position: absolute;
+            bottom: -100%; /* Inicia fora abaixo */
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: white;
+            transition: all 0.5s ease;
+            z-index: 1;
+        }
+
+        /* EFEITO HOVER NO AFTER DO SPAN (LINHA VERTICAL ESQUERDA ENTRA) */
+        button:hover span::after {
+            bottom: 0; /* Move de baixo para posição visível */
+        }
+
+        /* EFEITO ADICIONAL - MUDA A COR DE FUNDO E ESCALA NO HOVER */
+        button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        /* EFEITO DE CLIQUE */
+        button:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+    <button>
+        <span>Clique Aqui</span>
+    </button>
+</body>
+</html>
